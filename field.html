@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SNAKE-PLAY</title>
+
+    <!-- tailwind -->
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- font-awsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./style/start.css">
+    
+</head>
+<body class="
+h-auto
+bg-red-100
+flex flex-col justify-evenly items-center
+">
+    
+    <div id="header" class="
+    w-10/10
+    h-[15vh]
+    md:h-[30vh]
+    outline-3 outline-sky-900 outline-solid
+    flex flex-col justify-evenly
+    items-center
+    bg-red-200
+    ">
+        
+        <div class="
+        flex flex-row justify-between
+        w-8/10
+        items-center
+        rounded-md
+        bg-red-200
+        ">
+
+            <div id="score" class="
+            text-l md:text-xl
+            ">
+                <h2 class="
+                text-lg md:text-2xl
+                ">high score</h2>
+                <p>
+                    <!-- use jQuery to write out the information saved by Robert -->
+                    time: 
+                    <span id="timeScore">
+
+                    </span>
+
+                    <br>
+
+                    size:
+                    <span id="sizeScore">
+
+                    </span>
+
+                </p>
+            </div>
+
+            <div id="links" class="
+            " >
+
+                <a href="" id="settings">
+                    <i class="fa-solid fa-gear 
+                    text-[30px] md:text-[45px]
+                    mx-[20px]" id="settingIcon"></i>
+                </a>
+
+                <a href="" id="stats">
+                    <i class="fa-solid fa-chart-simple 
+                    text-[30px] md:text-[45px]
+                    mx-[20px]" id="settingIcon"></i>
+                </a>
+
+            </div>
+
+        
+
+        </div>
+
+    </div>
+
+    <a id="section" href="./field.html" class="
+    outline-2
+    bg-red-50
+    w-10/10
+    h-[85vh]
+    flex flex-col justify-evenly items-center
+    ">
+    
+        <p>
+            select a feild size
+        </p>
+
+        <button id="button1"
+        class="outline-2
+        bg-blue-100
+        w-8/10
+        h-[20vh]
+        rounded-3xl
+        flex justify-evenly items-center"
+        >
+            <p id="small">
+                small
+            </p>
+        </button>
+
+        <button id="button2"
+        class="outline-2
+        bg-green-100
+        w-8/10
+        h-[20vh]
+        rounded-3xl
+        flex justify-evenly items-center"
+        >
+            medium
+        </button>
+
+        <button id="button3"
+        class="outline-2
+        bg-purple-100
+        w-8/10
+        h-[20vh]
+        rounded-3xl
+        flex justify-evenly items-center"
+        >
+            large
+        </button>
+
+    </a>
+
+
+    <script>
+        $(document).ready(function(){
+
+            // will display time and size after game starts
+                let timeScore = '0:00'
+                $('#timeScore').append(timeScore)
+
+                let sizeScore = '0'
+                $('#sizeScore').append(sizeScore)
+        
+            // declaring button varibles
+                let size = 'small'
+                let speed = 'slow'
+                let food = '1'
+
+            // first set of options
+                $('#button1').on('click', function(){
+                    $("#small").html('clicked');
+                })
+        })
+    </script>
+</body>
+</html>
