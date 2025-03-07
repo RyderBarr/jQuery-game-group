@@ -26,12 +26,14 @@
 <body class="
 h-auto
 bg-red-100
-flex flex-col
+flex flex-col justify-evenly items-center
 ">
     
     <div id="header" class="
-    my-2
+    my-2 sm:my-6
     mx-3
+    w-9/10
+    md:h-[30vh]
     outline-3 outline-sky-900 outline-solid
     flex flex-col justify-evenly
     items-center
@@ -39,7 +41,7 @@ flex flex-col
     bg-red-200
     ">
         <div id="title" class="
-        text-4xl
+        text-4xl md:text-6xl
         ">
             snake
         </div>
@@ -53,10 +55,10 @@ flex flex-col
         ">
 
             <div id="score" class="
-            text-l
+            text-l md:text-xl
             ">
                 <h2 class="
-                text-lg
+                text-lg md:text-2xl
                 ">high score</h2>
                 <p>
                     <!-- use jQuery to write out the information saved by Robert -->
@@ -77,27 +79,31 @@ flex flex-col
 
             <div id="settings" class="
             " >
-                <i class="fa-solid fa-gear" id="settingIcon"></i>
+                <a href="">
+                    <i class="fa-solid fa-gear text-[30px] md:text-[45px]" id="settingIcon"></i>
+                </a>
             </div>
 
         </div>
 
     </div>
     
-    <button id="start" class="
+    <a id="start" href="./field.html" class="
     outline-2
     bg-blue-50
-    mx-10
-    my-40
-    px-20
-    py-20
+    w-9/10
+    mx-0
+    my-5
+    py-10
+    h-120 sm:h-40 md:h-[45vh]
     rounded-3xl
+    flex justify-evenly items-center
     ">
         <span class="
         text-5xl
         text-green-800
         ">start</span>
-    </button>
+    </a>
 
 
     <script>
