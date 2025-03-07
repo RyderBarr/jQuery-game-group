@@ -1,0 +1,8 @@
+.col{
+    display: flex;
+    flex-direction: row;
+}
+.row{
+    border: 1px solid black;
+    background-color: gray;
+}
