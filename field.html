@@ -91,7 +91,7 @@ flex flex-col justify-evenly items-center
 
     </div>
 
-    <a id="section" href="./field.html" class="
+    <div id="section" href="./field.html" class="
     outline-2
     bg-red-50
     w-10/10
@@ -138,7 +138,7 @@ flex flex-col justify-evenly items-center
             large
         </button>
 
-    </a>
+    </div>
 
 
     <script>
@@ -159,6 +159,15 @@ flex flex-col justify-evenly items-center
             // first set of options
                 $('#button1').on('click', function(){
                     $("#small").html('clicked');
+                    size = 'small';
+                })
+                $('#button1').on('click', function(){
+                    $("#small").html('clicked');
+                    size = 'medium';
+                })
+                $('#button1').on('click', function(){
+                    $("#small").html('clicked');
+                    size = 'large';
                 })
         })
     </script>
