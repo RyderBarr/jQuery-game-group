@@ -166,9 +166,17 @@ flex flex-col justify-evenly items-center
                     </div>
                     `)
 
-                    for(let i = 0; i<100;i++)
+                    for(let i = 1; i<=100;i++)
                     {
-                        $('.cont').append('<div></div>')
+                        if(i >=! 52 && i <=! 54)
+                        {
+                            $('.cont').append(`<div class="${i}">  </div>`)   
+                        }
+                        else if (i == 52){
+                            $('.cont').append(`<div class="${i}"> 
+                                <img src="snake assets/tail_left.svg" class="tail">
+                                </div>`)   
+                        }
                     }
                 }
                 else if(size == 'medium')
@@ -202,8 +210,6 @@ flex flex-col justify-evenly items-center
             
             // declaring button varibles
                 let size = 'small'
-                let speed = 'slow'
-                let food = '1'
 
             // first set of options
 
@@ -238,265 +244,6 @@ flex flex-col justify-evenly items-center
                     
                 }) 
 
-                // //first button
-                // $('#button1').on('click', function(){
-
-                //     // replace the buttons with new ones
-                //     $('#section').html(
-                //         `
-
-                //         <p>
-                //             select a feild size
-                //         </p>
-
-                //         <button id="button4"
-                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 slow
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 medium
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 fast
-                //             </p>
-                //         </button>
-                //         `
-                //     )
-                    
-                //     // set size to small
-                //     size = 'small'
-
-                // })
-
-                // //second button
-                // $('#button2').on('click', function(){
-
-                //     // replace the buttons with new ones
-                //     $('#section').html(
-                //         `
-
-                //         <p>
-                //             select a feild size
-                //         </p>
-
-                //         <button id="button4"
-                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 slow
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 medium
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 fast
-                //             </p>
-                //         </button>
-                //         `
-                //     )
-                    
-                //     // set size to small
-                //     size = 'medium'
-
-                // })
-
-                // //third button
-                // $('#button3').on('click', function(){
-
-                //     // replace the buttons with new ones
-                //     $('#section').html(
-                //         `
-
-                //         <p>
-                //             select a feild size
-                //         </p>
-
-                //         <button id="button4"
-                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 slow
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 medium
-                //             </p>
-                //         </button>
-
-                //         <button id="button5"
-                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                //             <p>
-                //                 fast
-                //             </p>
-                //         </button>
-                //         `
-                //     )
-                    
-                //     // set size to small
-                //     size = 'large'
-
-                // })      
-
-            // //second set of options
-
-            //     //fourth button
-            //     $('#button4').on('click', function(){
-
-            //         // replace the buttons with new ones
-            //         $('#section').html(
-            //             `
-
-            //             <p>
-            //                 select a amount of food
-            //             </p>
-
-            //             <button id="button7"
-            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     1
-            //                 </p>
-            //             </button>
-
-            //             <button id="button8"
-            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     3
-            //                 </p>
-            //             </button>
-
-            //             <button id="button9"
-            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     5
-            //                 </p>
-            //             </button>
-            //             `
-            //         )
-                    
-            //         // set speed to slow
-            //         speed = 'slow'
-
-            //     })
-
-            //     //fiveth button (word to hard to spell)
-            //     $('#button5').on('click', function(){
-
-            //         // replace the buttons with new ones
-            //         $('#section').html(
-            //             `
-
-            //             <p>
-            //                 select a amount of food
-            //             </p>
-
-            //             <button id="button7"
-            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     1
-            //                 </p>
-            //             </button>
-
-            //             <button id="button8"
-            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     3
-            //                 </p>
-            //             </button>
-
-            //             <button id="button9"
-            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     5
-            //                 </p>
-            //             </button>
-            //             `
-            //         )
-                    
-            //         // set speed to slow
-            //         speed = 'medium'
-
-            //     })
-
-            //     //sixth button
-            //     $('#button6').on('click', function(){
-
-            //         // replace the buttons with new ones
-            //         $('#section').html(
-            //             `
-
-            //             <p>
-            //                 select a amount of food
-            //             </p>
-
-            //             <button id="button7"
-            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     1
-            //                 </p>
-            //             </button>
-
-            //             <button id="button8"
-            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     3
-            //                 </p>
-            //             </button>
-
-            //             <button id="button9"
-            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-            //                 <p>
-            //                     5
-            //                 </p>
-            //             </button>
-            //             `
-            //         )
-                    
-            //         // set speed to slow
-            //         speed = 'fast'
-
-            //     })
-            
-            // // third set of options
-
-            //     // seventh button
-            //     $('#button7').on('click', function(){
-            //         $('#section').html()
-            //         $('#section').html(CreateGrid(size))
-            //         food = 1
-            //     })
-
-            //     // eigth button
-            //     $('#button8').on('click', function(){
-            //         $('#section').html()
-            //         $('#section').html(CreateGrid(size))
-            //         food = 3
-            //     })
-
-            //     // ninth button
-            //     $('#button9').on('click', function(){
-            //         $('#section').html()
-            //         $('#section').html(CreateGrid(size))
-            //         food = 5
-            //     })
-               
             // game end variable difinded
                 gameEnd = false
                 die = false
