@@ -353,7 +353,7 @@ var direction = "right";
 var lastDirection = "right";      
 var tailDirection = "right";      
 var moving = false;      
-var snake = [5, 4, 3];      
+var snake = [54, 52, 53];      
 
 
 
@@ -361,27 +361,37 @@ var snake = [5, 4, 3];
 function getCurve(past, direction) {    
 
 
-  if ((past == "right" && direction == "down") || (past == "down" && direction == "right")) {      
-    return body_topright;      
-  }    
-
-
-  if ((past == "left" && direction == "down") || (past == "down" && direction == "left")) {      
-    return body_topleft;      
-  }    
-
-
-  if ((past == "right" && direction == "up") || (past == "up" && direction == "right")) {      
-    return body_bottomright;      
-  }    
-
-
-  if ((past == "left" && direction == "up") || (past == "up" && direction == "left")) {      
+  if ((past == "right" && direction == "down")) {      
     return body_bottomleft;      
   }    
 
 
-  return "";    
+  if ( past == "down" && direction == "left") {      
+    return body_topleft;      
+  }    
+
+  if (past == "right" && direction == "up"){
+        return body_topleft
+  }
+
+  if (past == "up" && direction == "right") {      
+    return body_bottomright;      
+  }    
+
+
+  if ((past == "left" && direction == "up")) {      
+    return body_topright;      
+  }    
+if (past == "up" && direction == "left"){
+        return body_bottomleft
+
+}
+if (past == "left" && direction == "down"){
+        return body_bottomright
+}
+if (past == "down" && direction == "right"){
+        return body_topright
+}
 
 
 }  
@@ -416,7 +426,7 @@ function moveSnake() {
 
   if (direction == "left") {      
     newHeadLoc = headLoc - 1;      
-    if (headLoc % 10 == 0) {      
+    if ((headLoc % 10) - 1 == 0) {      
       clearInterval(moving);      
     }      
   }    
@@ -504,7 +514,8 @@ function moveSnake() {
 
 
     if (beforeTail - newTailLoc == 10) {      
-      newTailImg = tail_up;      
+      newTailImg = tail_up;   
+      clearInterval(moving)   
     }    
 
 
@@ -532,7 +543,7 @@ $(document).keydown(function(event) {
 
 
   if (!moving) {      
-    moving = setInterval(moveSnake, 400);      
+    moving = setInterval(moveSnake, 200);      
   }    
 
 
