@@ -37,6 +37,11 @@ p, input{
 
 #colors, #volume{
     background-color: white;
-    width: 45%;
+    width: 40%;
     height: 350px;
+}
+
+#links{
+    display: flex;
+    justify-content: space-between;
 }
