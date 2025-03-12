@@ -19,6 +19,7 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="./style/start.css">
+    <link rel="stylesheet" href="./style/field.css">
     
 </head>
 <body class="
@@ -30,7 +31,6 @@ flex flex-col justify-evenly items-center
     <div id="header" class="
     w-10/10
     h-[15vh]
-    md:h-[30vh]
     outline-3 outline-sky-900 outline-solid
     flex flex-col justify-evenly
     items-center
@@ -54,14 +54,14 @@ flex flex-col justify-evenly items-center
                 <p>
                     <!-- use jQuery to write out the information saved by Robert -->
                     time: 
-                    <span id="timeScore">
+                    <span class="timeScore">
 
                     </span>
 
                     <br>
 
                     size:
-                    <span id="sizeScore">
+                    <span class="sizeScore">
 
                     </span>
 
@@ -145,18 +145,59 @@ flex flex-col justify-evenly items-center
     </div>
 
 
+                    
+
     <script>
         $(document).ready(function(){
 
             // will display time and size after game starts
                 let timeScore = '0:00'
-                $('#timeScore').append(timeScore)
+                $('.timeScore').append(timeScore)
 
                 let sizeScore = '0'
-                $('#sizeScore').append(sizeScore)
+                $('.sizeScore').append(sizeScore)
         
-            function CreateGrid(){
+            function CreateGrid(size){
+                if (size == 'small')
+                {
+                    $('#section').html(`
+                    <div class="cont small">
+                        
+                    </div>
+                    `)
 
+                    for(let i = 0; i<100;i++)
+                    {
+                        $('.cont').append('<div></div>')
+                    }
+                }
+                else if(size == 'medium')
+                {
+                    $('#section').html(`
+                    <div class="cont medium">
+                        
+                    </div>
+                    `)
+
+                    for(let i = 0; i<225;i++)
+                    {
+                        $('.cont').append('<div></div>')
+                    }
+                }
+                else
+                {
+                    $('#section').html(
+                    `
+                    <div class="cont large">
+                        
+                    </div>
+                    `)
+
+                    for(let i = 0; i<400;i++)
+                    {
+                        $('.cont').append('<div></div>')
+                    }
+                }
             }
             
             // declaring button varibles
@@ -168,240 +209,309 @@ flex flex-col justify-evenly items-center
 
                 //first button
                 $('#button1').on('click', function(){
-
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
-
-                        <p>
-                            select a feild size
-                        </p>
-
-                        <button id="button4"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                slow
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                medium
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                fast
-                            </p>
-                        </button>
-                        `
-                    )
-                    
+ 
                     // set size to small
                     size = 'small'
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
 
                 })
 
                 //second button
                 $('#button2').on('click', function(){
 
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
-
-                        <p>
-                            select a feild size
-                        </p>
-
-                        <button id="button4"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                slow
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                medium
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                fast
-                            </p>
-                        </button>
-                        `
-                    )
-                    
                     // set size to small
                     size = 'medium'
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
 
-                })
+                })  
 
                 //third button
                 $('#button3').on('click', function(){
 
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
-
-                        <p>
-                            select a feild size
-                        </p>
-
-                        <button id="button4"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                slow
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                medium
-                            </p>
-                        </button>
-
-                        <button id="button5"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                fast
-                            </p>
-                        </button>
-                        `
-                    )
-                    
                     // set size to small
                     size = 'large'
 
-                })
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
+                    
+                }) 
+
+                // //first button
+                // $('#button1').on('click', function(){
+
+                //     // replace the buttons with new ones
+                //     $('#section').html(
+                //         `
+
+                //         <p>
+                //             select a feild size
+                //         </p>
+
+                //         <button id="button4"
+                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 slow
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 medium
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 fast
+                //             </p>
+                //         </button>
+                //         `
+                //     )
+                    
+                //     // set size to small
+                //     size = 'small'
+
+                // })
+
+                // //second button
+                // $('#button2').on('click', function(){
+
+                //     // replace the buttons with new ones
+                //     $('#section').html(
+                //         `
+
+                //         <p>
+                //             select a feild size
+                //         </p>
+
+                //         <button id="button4"
+                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 slow
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 medium
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 fast
+                //             </p>
+                //         </button>
+                //         `
+                //     )
+                    
+                //     // set size to small
+                //     size = 'medium'
+
+                // })
+
+                // //third button
+                // $('#button3').on('click', function(){
+
+                //     // replace the buttons with new ones
+                //     $('#section').html(
+                //         `
+
+                //         <p>
+                //             select a feild size
+                //         </p>
+
+                //         <button id="button4"
+                //         class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 slow
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 medium
+                //             </p>
+                //         </button>
+
+                //         <button id="button5"
+                //         class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+                //             <p>
+                //                 fast
+                //             </p>
+                //         </button>
+                //         `
+                //     )
+                    
+                //     // set size to small
+                //     size = 'large'
+
+                // })      
+
+            // //second set of options
+
+            //     //fourth button
+            //     $('#button4').on('click', function(){
+
+            //         // replace the buttons with new ones
+            //         $('#section').html(
+            //             `
+
+            //             <p>
+            //                 select a amount of food
+            //             </p>
+
+            //             <button id="button7"
+            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     1
+            //                 </p>
+            //             </button>
+
+            //             <button id="button8"
+            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     3
+            //                 </p>
+            //             </button>
+
+            //             <button id="button9"
+            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     5
+            //                 </p>
+            //             </button>
+            //             `
+            //         )
+                    
+            //         // set speed to slow
+            //         speed = 'slow'
+
+            //     })
+
+            //     //fiveth button (word to hard to spell)
+            //     $('#button5').on('click', function(){
+
+            //         // replace the buttons with new ones
+            //         $('#section').html(
+            //             `
+
+            //             <p>
+            //                 select a amount of food
+            //             </p>
+
+            //             <button id="button7"
+            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     1
+            //                 </p>
+            //             </button>
+
+            //             <button id="button8"
+            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     3
+            //                 </p>
+            //             </button>
+
+            //             <button id="button9"
+            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     5
+            //                 </p>
+            //             </button>
+            //             `
+            //         )
+                    
+            //         // set speed to slow
+            //         speed = 'medium'
+
+            //     })
+
+            //     //sixth button
+            //     $('#button6').on('click', function(){
+
+            //         // replace the buttons with new ones
+            //         $('#section').html(
+            //             `
+
+            //             <p>
+            //                 select a amount of food
+            //             </p>
+
+            //             <button id="button7"
+            //             class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     1
+            //                 </p>
+            //             </button>
+
+            //             <button id="button8"
+            //             class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     3
+            //                 </p>
+            //             </button>
+
+            //             <button id="button9"
+            //             class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
+            //                 <p>
+            //                     5
+            //                 </p>
+            //             </button>
+            //             `
+            //         )
+                    
+            //         // set speed to slow
+            //         speed = 'fast'
+
+            //     })
             
+            // // third set of options
 
-            // second set of options change html
+            //     // seventh button
+            //     $('#button7').on('click', function(){
+            //         $('#section').html()
+            //         $('#section').html(CreateGrid(size))
+            //         food = 1
+            //     })
 
-                //fourth button
-                $('#button4').on('click', function(){
+            //     // eigth button
+            //     $('#button8').on('click', function(){
+            //         $('#section').html()
+            //         $('#section').html(CreateGrid(size))
+            //         food = 3
+            //     })
 
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
+            //     // ninth button
+            //     $('#button9').on('click', function(){
+            //         $('#section').html()
+            //         $('#section').html(CreateGrid(size))
+            //         food = 5
+            //     })
+               
+            // game end variable difinded
+                gameEnd = false
+                die = false
 
-                        <p>
-                            select a amount of food
-                        </p>
-
-                        <button id="button7"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                1
-                            </p>
-                        </button>
-
-                        <button id="button8"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                3
-                            </p>
-                        </button>
-
-                        <button id="button9"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                5
-                            </p>
-                        </button>
-                        `
-                    )
-                    
-                    // set speed to slow
-                    speed = 'slow'
-
-                })
-
-                //fiveth button (word to hard to spell)
-                $('#button5').on('click', function(){
-
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
-
-                        <p>
-                            select a amount of food
-                        </p>
-
-                        <button id="button7"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                1
-                            </p>
-                        </button>
-
-                        <button id="button8"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                3
-                            </p>
-                        </button>
-
-                        <button id="button9"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                5
-                            </p>
-                        </button>
-                        `
-                    )
-                    
-                    // set speed to slow
-                    speed = 'medium'
-
-                })
-
-                //sixth button (word to hard to spell)
-                $('#button6').on('click', function(){
-
-                    // replace the buttons with new ones
-                    $('#section').html(
-                        `
-
-                        <p>
-                            select a amount of food
-                        </p>
-
-                        <button id="button7"
-                        class="outline-2 bg-red-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                1
-                            </p>
-                        </button>
-
-                        <button id="button8"
-                        class="outline-2 bg-blue-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                3
-                            </p>
-                        </button>
-
-                        <button id="button9"
-                        class="outline-2 bg-green-100 w-8/10 h-[20vh] rounded-3xl flex justify-evenly items-center" >
-                            <p>
-                                5
-                            </p>
-                        </button>
-                        `
-                    )
-                    
-                    // set speed to slow
-                    speed = 'fast'
-
-                })
+            if(gameEnd)
+            {
+                if(die)
+                {
+                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">you lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+                }
+                else
+                {
+                    $('#section').html('')
+                }
+            }
 
             })
     </script>
