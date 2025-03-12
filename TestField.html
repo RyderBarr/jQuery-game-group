@@ -89,52 +89,52 @@
         <div class="26">
 26
         </div>
-        <div class="427">
+        <div class="27">
 27
         </div>
-        <div class="428">
+        <div class="28">
 28
         </div>
-        <div class="429">
+        <div class="29">
 29
         </div>
-        <div class="430">
+        <div class="30">
 30
         </div>
-        <div class="431">
+        <div class="31">
 31
         </div>
-        <div class="432">
+        <div class="32">
 32
         </div>
-        <div class="433">
+        <div class="33">
 33
         </div>
-        <div class="434">
+        <div class="34">
 34
         </div>
-        <div class="435">
+        <div class="35">
 35
         </div>
-        <div class="436">
+        <div class="36">
 36
         </div>
-        <div class="437">
+        <div class="37">
 37
         </div>
-        <div class="438">
+        <div class="38">
 38
         </div>
-        <div class="439">
+        <div class="39">
 39
         </div>
-        <div class="440">
+        <div class="40">
 40
         </div>
-        <div class="441">
+        <div class="41">
 41
         </div>
-        <div class="442">
+        <div class="42">
 42
         </div>
         <div class="43">
@@ -318,87 +318,268 @@
 </body>
 <script>
 
-    $(document).ready(function() {
-        let headsrc = "snake assets/head_right.svg"
-        let bodysrc = "snake assets/body_horizontal.svg"
-        let tailsrc = "snake assets/tail_left.svg"
-        let body_top_left = "snake assets/body_top_left.svg"
-        $("body").keydown(function(event){
-                let code = event.keyCode
-
-                if(code == 39){
-                       var test = setInterval(function(){
-                          let headLoc = parseInt($(".head").parent().attr(("class")))
-                let NewHeadLoc = String(headLoc + 1)
-
-                let bodyLoc = parseInt($(".body").parent().attr(("class")))
-                let NewBodyLoc = bodyLoc + 1
-
-                let tailLoc = parseInt($(".tail").parent().attr(("class")))
-                let NewTailLoc = tailLoc + 1
-
-                        if(NewHeadLoc % 10 == 0 || NewHeadLoc < 10){
-                                clearInterval(test)
-                        }
-                
-                $("."+headLoc).empty()
-                $("."+bodyLoc).empty()
-                $("."+tailLoc).empty()
-$("."+NewHeadLoc).empty()
-                $("."+NewHeadLoc).append("<img class=head>")
-                
-                $(".head").attr("src", headsrc)
-                
-                $("."+NewBodyLoc).append("<img class=body>")
-                $(".body").attr("src", bodysrc)
-                
-                $("."+NewTailLoc).append("<img class=tail>")
-                $(".tail").attr("src", tailsrc)     
-                
-                        }, 400)
-                
-                }
-                
-             
-
-                
-                // if (code == 38){
-                //         clearInterval(test)
-                        
-                //           let headLoc = parseInt($(".head").parent().attr(("class")))
-                // let NewHeadLoc = String(headLoc - 10)
-
-                // let bodyLoc = parseInt($(".body").parent().attr(("class")))
-                // let NewBodyLoc = bodyLoc + 1
-
-                // let tailLoc = parseInt($(".tail").parent().attr(("class")))
-                // let NewTailLoc = tailLoc + 1
+$(document).ready(function() {  
 
 
-                // $("."+headLoc).empty()
-                // $("."+bodyLoc).empty()
-                // $("."+tailLoc).empty()
-                // $("."+NewHeadLoc).empty()
 
-                // $("."+tailLoc).append("<img class=body_top_left>")
-                // $(".body_top_left").attr("src", body_top_left)
-                
-                // $("."+NewHeadLoc).append("<img class=head>")
-                // $(".head").attr("src", headsrc)
-                
-                // $("."+NewBodyLoc).append("<img class=body>")
-                // $(".body").attr("src", bodysrc)
-                
-                // $("."+NewTailLoc).append("<img class=tail>")
-                // $(".tail").attr("src", tailsrc)   
 
-                      
-                // } 
-                
-                
+var head_right = "snake assets/head_right.svg";    
+var head_left = "snake assets/head_left.svg";    
+var head_up = "snake assets/head_up.svg";    
+var head_down = "snake assets/head_down.svg";  
 
-        })
-        
+
+
+
+var bodysrc = "snake assets/body_horizontal.svg";    
+var body_vertical = "snake assets/body_vertical.svg";    
+var body_topleft = "snake assets/body_topleft.svg";    
+var body_topright = "snake assets/body_topright.svg";    
+var body_bottomleft = "snake assets/body_bottomleft.svg";    
+var body_bottomright = "snake assets/body_bottomright.svg";  
+
+
+
+
+var tail_right = "snake assets/tail_right.svg";    
+var tail_left = "snake assets/tail_left.svg";    
+var tail_up = "snake assets/tail_up.svg";    
+var tail_down = "snake assets/tail_down.svg";  
+
+
+
+
+var direction = "right";      
+var lastDirection = "right";      
+var tailDirection = "right";      
+var moving = false;      
+var snake = [5, 4, 3];      
+
+
+
+
+function getCurve(past, direction) {    
+
+
+  if ((past == "right" && direction == "down") || (past == "down" && direction == "right")) {      
+    return body_topright;      
+  }    
+
+
+  if ((past == "left" && direction == "down") || (past == "down" && direction == "left")) {      
+    return body_topleft;      
+  }    
+
+
+  if ((past == "right" && direction == "up") || (past == "up" && direction == "right")) {      
+    return body_bottomright;      
+  }    
+
+
+  if ((past == "left" && direction == "up") || (past == "up" && direction == "left")) {      
+    return body_bottomleft;      
+  }    
+
+
+  return "";    
+
+
+}  
+
+
+
+
+function moveSnake() {      
+
+
+  if (!moving) {      
+    return;      
+  }    
+
+
+  var headLoc = snake[0];    
+  var tailLoc = snake[snake.length - 1];    
+
+
+  var newHeadLoc = headLoc;    
+
+
+
+
+  if (direction == "right") {      
+    newHeadLoc = headLoc + 1;      
+    if (newHeadLoc % 10 == 0) {      
+      clearInterval(moving);      
+    }      
+  }    
+
+
+  if (direction == "left") {      
+    newHeadLoc = headLoc - 1;      
+    if (headLoc % 10 == 0) {      
+      clearInterval(moving);      
+    }      
+  }    
+
+
+  if (direction == "up") {      
+    newHeadLoc = headLoc - 10;      
+    if (newHeadLoc < 1) {      
+      clearInterval(moving);      
+    }      
+  }    
+
+
+  if (direction == "down") {      
+    newHeadLoc = headLoc + 10;      
+    if (newHeadLoc > 100) {      
+      clearInterval(moving);      
+    }      
+  }    
+
+
+  snake.unshift(newHeadLoc);      
+  var oldTail = snake.pop();      
+
+
+
+
+  $("." + oldTail).html("");      
+
+
+
+
+  var bodyImg = "";      
+
+
+  if (lastDirection != direction) {      
+    bodyImg = getCurve(lastDirection, direction);      
+    if (bodyImg == "") {      
+      bodyImg = (direction == "right" || direction == "left") ? bodysrc : body_vertical;      
+    }      
+  } else {      
+    bodyImg = (direction == "right" || direction == "left") ? bodysrc : body_vertical;      
+  }      
+
+
+
+
+  $("." + headLoc).html('<img src="' + bodyImg + '" class="body">');      
+
+
+
+
+  if (direction == "right") {      
+    $("." + newHeadLoc).html('<img src="' + head_right + '" class="head">');      
+  }    
+  if (direction == "left") {      
+    $("." + newHeadLoc).html('<img src="' + head_left + '" class="head">');      
+  }    
+  if (direction == "up") {      
+    $("." + newHeadLoc).html('<img src="' + head_up + '" class="head">');      
+  }    
+  if (direction == "down") {      
+    $("." + newHeadLoc).html('<img src="' + head_down + '" class="head">');      
+  }    
+
+
+
+
+  var newTailLoc = snake[snake.length - 1];      
+  var newTailImg = tail_right;      
+
+
+  if (snake.length > 1) {      
+    var beforeTail = snake[snake.length - 2];      
+
+
+    if (beforeTail - newTailLoc == 1) {      
+      newTailImg = tail_left;      
+    }    
+
+
+    if (beforeTail - newTailLoc == -1) {      
+      newTailImg = tail_right;      
+    }    
+
+
+    if (beforeTail - newTailLoc == 10) {      
+      newTailImg = tail_up;      
+    }    
+
+
+    if (beforeTail - newTailLoc == -10) {      
+      newTailImg = tail_down;      
+    }    
+  }    
+
+
+  $("." + newTailLoc).html('<img src="' + newTailImg + '" class="tail">');      
+
+
+
+
+  tailDirection = lastDirection;      
+  lastDirection = direction;      
+
+
+}  
+
+
+
+
+$(document).keydown(function(event) {    
+
+
+  if (!moving) {      
+    moving = setInterval(moveSnake, 400);      
+  }    
+
+
+
+
+  if (event.keyCode === 39) {      
+    if (direction != "left") {      
+      direction = "right";      
+    }      
+  }    
+
+
+  if (event.keyCode === 37) {      
+    if (direction != "right") {      
+      direction = "left";      
+    }      
+  }    
+
+
+  if (event.keyCode === 38) {      
+    if (direction != "down") {      
+      direction = "up";      
+    }      
+  }    
+
+
+  if (event.keyCode === 40) {      
+    if (direction != "up") {      
+      direction = "down";      
+    }      
+  }    
+
+
+});    
+
+
 });
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </html>
