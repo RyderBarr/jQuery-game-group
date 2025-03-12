@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    // Settings
     $("#colorsel1").on('click', function(){
         $("body").css({'background-color': 'rgb(240, 194, 194)'})
     })
@@ -8,4 +9,5 @@ $(document).ready(function(){
     $("#colorsel3").on('click', function(){
         $("body").css({'background-color': 'rgb(255, 153, 51)'})
     })
+
 })
