@@ -10,3 +10,6 @@
 .cont > div{
     border: solid red 1px;
 }
+img{
+    transition: src 2s;
+}
