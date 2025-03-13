@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Snake Game</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
 </head>
 <body>
-    <div id="container">
-        <button>Pause</button>
-        <section id="stats">
-            <p id="size">Size:</p>
-            <p id="biggest">Biggest Size:</p>
-            <p id="power">Current Power Up:</p>
-        </section>
-        <button>Settings</button>
-        </div>
+    <!-- HTML -- an example of a button and an audio element -->
+<div>
+    <button onclick="playAudio()">play</button>
+    <audio src="./audio/music.mp3" type="audio/mp3" id="audioPlayer"></audio>
+  </div>
 
-    <main id="game-board"></main>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+  <script>
+    let audioPlayer = document.getElementById('audioPlayer');
+    function playAudio(){
+      audioPlayer.load(); // reload the audio player so that the audio restarts from the beginning on each click
+      audioPlayer.play();
+    }
+  </script>
 </body>
 </html>
