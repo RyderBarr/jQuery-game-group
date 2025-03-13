@@ -1,0 +1,45 @@
+
+
+.cont{
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    flex-wrap: wrap;
+    width: 100%;
+    position: absolute;
+    top: 80px;
+    left: 115px;
+}
+.box{
+    height: 450px;
+    width: 400px;
+}
+h2{
+    text-align: center;
+    font-weight: bold;
+}
+button{
+   position: absolute;
+   left: 47.5%;
+   height: 35px;
+   width: 135px;
+   background-color: rgb(160, 87, 87);
+   /* background-color: red; */
+   color: white; border-radius: 15px;
+}
+
+button:hover{
+        animation: shake 1s;
+        animation-fill-mode: both;
+        animation-delay: 1s;
+}
+
+@keyframes shake {
+    
+    0% { background-color: rgb(160, 87, 87);}
+    25% {rotate: -45deg;}
+    50% {transform: scale(1.5); background-color: rgb(225, 155, 155);}
+    75% {rotate: 40deg;}
+    100% { rotate: 0deg;}
+
+}

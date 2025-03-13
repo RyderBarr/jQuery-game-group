@@ -14,11 +14,10 @@
     <!-- font-awsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./style/start.css">
+    <link rel="stylesheet" href="./style/field.css">
     
 </head>
 <body class="
@@ -30,7 +29,6 @@ flex flex-col justify-evenly items-center
     <div id="header" class="
     w-10/10
     h-[15vh]
-    md:h-[30vh]
     outline-3 outline-sky-900 outline-solid
     flex flex-col justify-evenly
     items-center
@@ -54,14 +52,14 @@ flex flex-col justify-evenly items-center
                 <p>
                     <!-- use jQuery to write out the information saved by Robert -->
                     time: 
-                    <span id="timeScore">
+                    <span class="timeScore">
 
                     </span>
 
                     <br>
 
                     size:
-                    <span id="sizeScore">
+                    <span class="sizeScore">
 
                     </span>
 
@@ -111,7 +109,7 @@ flex flex-col justify-evenly items-center
         rounded-3xl
         flex justify-evenly items-center"
         >
-            <p id="small">
+            <p>
                 small
             </p>
         </button>
@@ -124,7 +122,9 @@ flex flex-col justify-evenly items-center
         rounded-3xl
         flex justify-evenly items-center"
         >
-            medium
+            <p>
+                medium
+            </p>
         </button>
 
         <button id="button3"
@@ -135,41 +135,113 @@ flex flex-col justify-evenly items-center
         rounded-3xl
         flex justify-evenly items-center"
         >
-            large
+            <p>
+                large
+            </p>
         </button>
 
-    </div>
-
+    </div>                 
 
     <script>
         $(document).ready(function(){
 
             // will display time and size after game starts
                 let timeScore = '0:00'
-                $('#timeScore').append(timeScore)
+                $('.timeScore').append(timeScore)
 
                 let sizeScore = '0'
-                $('#sizeScore').append(sizeScore)
+                $('.sizeScore').append(sizeScore)
         
+            function CreateGrid(width){
+
+                // size = the amount of cells used
+                let size = width*width
+                let tail = Math.round(size/2)+2
+                let body = Math.round(size/2)+3
+                let head = Math.round(size/2)+4
+
+                $('#section').html(`
+                <div class="cont small">
+     
+                </div>
+                `)
+
+                if (width == 10)
+                {
+                    $('.cont').addClass(`small`)
+                }
+                else if(width == 15)
+                {
+                    $('.cont').addClass(`medium`)
+                }
+                else
+                {
+                    $('.cont').html(`large`)
+                }
+
+                for(let i = 1; i<=size;i++)
+                {
+                    $('.cont').append(`<div class="${i}">  </div>`)
+                }
+            
+                $(`.${tail}`).html(`<img src="snake assets/tail_left.svg" class="tail">`)
+                $(`.${body}`).html(`<img src="snake assets/body_horizontal.svg" class="body">`)
+                $(`.${head}`).html(`<img src="snake assets/head_right.svg" class="head">`)
+            }
+            
             // declaring button varibles
-                let size = 'small'
-                let speed = 'slow'
-                let food = '1'
+                let size = 10
 
             // first set of options
+
+                //first button
                 $('#button1').on('click', function(){
-                    $("#small").html('clicked');
-                    size = 'small';
+ 
+                    // set size to small
+                    size = 10
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
+
                 })
-                $('#button1').on('click', function(){
-                    $("#small").html('clicked');
-                    size = 'medium';
-                })
-                $('#button1').on('click', function(){
-                    $("#small").html('clicked');
-                    size = 'large';
-                })
-        })
+
+                //second button
+                $('#button2').on('click', function(){
+
+                    // set size to small
+                    size = 15
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
+
+                })  
+
+                //third button
+                $('#button3').on('click', function(){
+
+                    // set size to small
+                    size = 20
+
+                    $('#section').html()
+                    $('#section').html(CreateGrid(size))
+                    
+                }) 
+
+            // game end variable difinded
+                gameEnd = false
+                die = false
+
+            if(gameEnd)
+            {
+                if(die)
+                {
+                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">you lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+                }
+                else
+                {
+                    $('#section').html('')
+                }
+            }
+
+            })
     </script>
 </body>
 </html>
