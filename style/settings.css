@@ -1,0 +1,47 @@
+body{
+    background-color: rgb(230, 184, 184);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h2, h3{
+    text-align: center;
+}
+
+#colors{
+    float: left;
+}
+
+#container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#container input{
+    height: 20px;
+    width: 20px;
+}
+
+#colorsel1{
+    accent-color: blue;
+}
+
+p, input{
+    margin-left: 15px;
+}
+
+#volume{
+    float: right;
+}
+
+#colors, #volume{
+    background-color: white;
+    width: 40%;
+    height: 350px;
+}
+
+#links{
+    display: flex;
+    justify-content: space-between;
+}

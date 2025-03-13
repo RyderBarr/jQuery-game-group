@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings Page</title>
+    <link rel="stylesheet" href="./style/settings.css">
+</head>
+<body>
+    <section id="colors">
+        <h2>Color Selection:</h2>
+        <!--Toggles between colors for both the snake and background color-->
+        <div id="container">
+            <p>Reddish Pink background with light blue snake:<input type="radio" id="colorsel1" name="colorselect" value="1"><br></p>
+            <p>Blue background with black snake:<input type="radio" id="colorsel2" name="colorselect" value="2"><br></p>
+            <p>Orange background with blue snake:<input type="radio" id="colorsel3" name="colorselect" value="3"><br></p>
+        </div>
+    </section>
+    <section id="volume">
+        <h2>Volume:</h2>
+        <h3>Music</h3>
+        <!--Toggles music-->
+        <p>On:<input type="radio" id="musicon" name="music" value="on1"></p>
+        <p>Off:<input type="radio" id="musicoff" name="music" value="off1"></p>
+        <h3>Sound Effects</h3>
+        <!--Toggles other sound effects-->
+        <p>On:
+            <input type="radio" id="soundon" name="sound" value="on2">
+        </p>
+        <p>Off:<input type="radio" id="soundoff" name="sound" value="off2"></p>
+    </section>
+    <section id="links">
+        <a href=""><img src="https://www.svgrepo.com/show/22031/home-icon-silhouette.svg" width="50px" alt="Home"></a>
+        <a href=""><img src="https://www.svgrepo.com/show/447653/gaming.svg" width="50px" alt="Game"></a>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
