@@ -1,6 +1,8 @@
+i{
+    color: darkcyan;
+}
 .cont{
     display: grid;
-
     border: solid 2px black;
     width: auto;
 }

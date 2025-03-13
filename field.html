@@ -14,11 +14,9 @@
     <!-- font-awsome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
-
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="./style/start.css">
     <link rel="stylesheet" href="./style/field.css">
     
 </head>
@@ -142,10 +140,7 @@ flex flex-col justify-evenly items-center
             </p>
         </button>
 
-    </div>
-
-
-                    
+    </div>                 
 
     <script>
         $(document).ready(function(){
@@ -157,59 +152,45 @@ flex flex-col justify-evenly items-center
                 let sizeScore = '0'
                 $('.sizeScore').append(sizeScore)
         
-            function CreateGrid(size){
-                if (size == 'small')
-                {
-                    $('#section').html(`
-                    <div class="cont small">
-                        
-                    </div>
-                    `)
+            function CreateGrid(width){
 
-                    for(let i = 1; i<=100;i++)
-                    {
-                        if(i >=! 52 && i <=! 54)
-                        {
-                            $('.cont').append(`<div class="${i}">  </div>`)   
-                        }
-                        else if (i == 52){
-                            $('.cont').append(`<div class="${i}"> 
-                                <img src="snake assets/tail_left.svg" class="tail">
-                                </div>`)   
-                        }
-                    }
+                // size = the amount of cells used
+                let size = width*width
+                let tail = Math.round(size/2)+2
+                let body = Math.round(size/2)+3
+                let head = Math.round(size/2)+4
+
+                $('#section').html(`
+                <div class="cont small">
+     
+                </div>
+                `)
+
+                if (width == 10)
+                {
+                    $('.cont').addClass(`small`)
                 }
-                else if(size == 'medium')
+                else if(width == 15)
                 {
-                    $('#section').html(`
-                    <div class="cont medium">
-                        
-                    </div>
-                    `)
-
-                    for(let i = 0; i<225;i++)
-                    {
-                        $('.cont').append('<div></div>')
-                    }
+                    $('.cont').addClass(`medium`)
                 }
                 else
                 {
-                    $('#section').html(
-                    `
-                    <div class="cont large">
-                        
-                    </div>
-                    `)
-
-                    for(let i = 0; i<400;i++)
-                    {
-                        $('.cont').append('<div></div>')
-                    }
+                    $('.cont').html(`large`)
                 }
+
+                for(let i = 1; i<=size;i++)
+                {
+                    $('.cont').append(`<div class="${i}">  </div>`)
+                }
+            
+                $(`.${tail}`).html(`<img src="snake assets/tail_left.svg" class="tail">`)
+                $(`.${body}`).html(`<img src="snake assets/body_horizontal.svg" class="body">`)
+                $(`.${head}`).html(`<img src="snake assets/head_right.svg" class="head">`)
             }
             
             // declaring button varibles
-                let size = 'small'
+                let size = 10
 
             // first set of options
 
@@ -217,7 +198,7 @@ flex flex-col justify-evenly items-center
                 $('#button1').on('click', function(){
  
                     // set size to small
-                    size = 'small'
+                    size = 10
                     $('#section').html()
                     $('#section').html(CreateGrid(size))
 
@@ -227,7 +208,7 @@ flex flex-col justify-evenly items-center
                 $('#button2').on('click', function(){
 
                     // set size to small
-                    size = 'medium'
+                    size = 15
                     $('#section').html()
                     $('#section').html(CreateGrid(size))
 
@@ -237,7 +218,7 @@ flex flex-col justify-evenly items-center
                 $('#button3').on('click', function(){
 
                     // set size to small
-                    size = 'large'
+                    size = 20
 
                     $('#section').html()
                     $('#section').html(CreateGrid(size))
