@@ -139,7 +139,6 @@ flex flex-col justify-evenly items-center
                 large
             </p>
         </button>
-
     </div>                 
 
     <script>
@@ -155,38 +154,128 @@ flex flex-col justify-evenly items-center
             function CreateGrid(width){
 
                 // size = the amount of cells used
-                let size = width*width
-                let tail = Math.round(size/2)+2
-                let body = Math.round(size/2)+3
-                let head = Math.round(size/2)+4
+                    let size = width*width
 
-                $('#section').html(`
-                <div class="cont small">
-     
-                </div>
-                `)
+                // the snake location formula:
+                    // equation for the middle row of the grid
+                    // x * floor(x/2)
+                    // the + at the end is to add the space between the border and snake
+                        let tail = width*Math.floor(width/2)+2
+                        let body = width*Math.floor(width/2)+3
+                        let head = width*Math.floor(width/2)+4
 
-                if (width == 10)
-                {
-                    $('.cont').addClass(`small`)
-                }
-                else if(width == 15)
-                {
-                    $('.cont').addClass(`medium`)
-                }
-                else
-                {
-                    $('.cont').html(`large`)
-                }
+                // randomly populates food
+                    let food = Math.floor(Math.random() * (size+1))
+                    console.log("food at" + food)
 
-                for(let i = 1; i<=size;i++)
-                {
-                    $('.cont').append(`<div class="${i}">  </div>`)
-                }
-            
-                $(`.${tail}`).html(`<img src="snake assets/tail_left.svg" class="tail">`)
-                $(`.${body}`).html(`<img src="snake assets/body_horizontal.svg" class="body">`)
-                $(`.${head}`).html(`<img src="snake assets/head_right.svg" class="head">`)
+                // var declared early to evod an error on console
+                    let imgsize = `w-[30px] h-[30px]`
+
+
+
+                // creates the space for the grid to go
+                // the grid frame
+                    $('#section').html
+                    (`
+
+                    <div class="cont small">
+                        
+                    </div>
+
+                    `)
+
+
+
+
+                // the size based on what the user selected
+                    if (width == 10)
+                    {
+
+                        // sets the size into the grid frame
+                            $('.cont').addClass(`small`)
+
+                        // tailwind saved as a varible
+                            imgsize = `w-[30px] h-[30px]`
+
+                    }
+                    else if(width == 15)
+                    {
+
+                        // sets the size into the grid frame
+                            $('.cont').addClass(`medium`)
+
+                        // tailwind saved as a varible
+                            imgsize = `w-[22.5px] h-[22.5px]`
+
+                    }
+                    else
+                    {
+
+                        // sets the size into the grid frame
+                            $('.cont').addClass(`large`)
+
+                        // tailwind saved as a varible
+                            imgsize = `w-[18px] h-[18px]`
+
+                    }
+
+                // a for loop that moves through the size of the grid
+                // the i = 1 is important
+                    for(let i = 1; i<=size;i++)
+                    {
+
+                        // populates the frame with the cells each with there i num as a class
+                            $('.cont').append(`<div class="${i}">  </div>`)
+
+                    }
+
+
+
+                // sets the sell found in the spot of the snake location formula
+                // into the part of the snake they are
+                    $(`.${tail}`).html
+                    (`
+
+                        <img src="snake assets/tail_left.svg" class="tail">
+
+                    `)
+
+                    $(`.${body}`).html
+                    (`
+
+                        <img src="snake assets/body_horizontal.svg" class="body">
+                    
+                    `)
+
+                    $(`.${head}`).html
+                    (`
+                    
+                        <img src="snake assets/head_right.svg" class="head">
+                        
+                    `)
+
+                // check that it isn't placing the food over the bodys
+                    if($('.food').children().length <= 0)
+                    {
+
+                        // adds the apple to the sell with the class of the randomly generated num
+                            $(`.${food}`).html
+                            (`
+                            
+                                <img src="./images/apple.svg" alt="" class="apple">
+                                
+                            `)
+
+                    }
+
+                
+                // sets the size of these with the imgsize var made in the if statments
+                    $(`.apple`).addClass(imgsize)
+                    $('.head').addClass(imgsize)
+                    $('.body').addClass(imgsize)
+                    $('.tail').addClass(imgsize)
+                
+
             }
             
             // declaring button varibles
@@ -195,51 +284,66 @@ flex flex-col justify-evenly items-center
             // first set of options
 
                 //first button
-                $('#button1').on('click', function(){
+                    $('#button1').on('click', function(){
  
-                    // set size to small
-                    size = 10
-                    $('#section').html()
-                    $('#section').html(CreateGrid(size))
+                        // set size to small
+                            size = 10
 
-                })
+                        // calls creategrid to replace the html
+                            $('#section').html(CreateGrid(size))
+
+                    })
 
                 //second button
-                $('#button2').on('click', function(){
+                    $('#button2').on('click', function(){
 
-                    // set size to small
-                    size = 15
-                    $('#section').html()
-                    $('#section').html(CreateGrid(size))
+                        // set size to small
+                            size = 15
 
-                })  
+                        // calls creategrid to replace the html
+                            $('#section').html(CreateGrid(size))
+
+                    })  
 
                 //third button
-                $('#button3').on('click', function(){
+                    $('#button3').on('click', function(){
 
-                    // set size to small
-                    size = 20
+                        // set size to small
+                            size = 20
 
-                    $('#section').html()
-                    $('#section').html(CreateGrid(size))
+                        // calls creategrid to replace the html
+                            $('#section').html(CreateGrid(size))
                     
-                }) 
+                    }) 
 
             // game end variable difinded
                 gameEnd = false
                 die = false
 
-            if(gameEnd)
-            {
-                if(die)
+            // if the game has ended
+                if(gameEnd)
                 {
-                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">you lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+
+                    // if end because of dieing
+                        if(die)
+                        {
+
+                            // end screen
+                            // not going to format because to big
+                                $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">you lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+                        }
+
+                    // if end because of winning
+                        else
+                        {
+
+                            // end screen
+                            // not going to format because to big
+                                $('#section').html('')
+
+                        }
+
                 }
-                else
-                {
-                    $('#section').html('')
-                }
-            }
 
             })
     </script>

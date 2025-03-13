@@ -10,6 +10,9 @@ i{
     border: solid black 1px;
     background-color: oklch(0.925 0.084 155.995);
 }
+.cont > .food{
+    background-color: red;
+}
 .small{
     grid-template-rows: repeat(10, 30px);
     grid-template-columns: repeat(10,30px);
@@ -32,6 +35,7 @@ i{
     grid-template-rows: repeat(20, 18px);
     grid-template-columns: repeat(20,18px);
 }
+
 
 .large > div{
     width:18px;
@@ -92,3 +96,4 @@ i{
         height:30px;
     }
 }
+
