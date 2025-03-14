@@ -18,6 +18,11 @@ i{
     width: 30px;
     height: 30px;
 }
+.small > div > img{
+    width: 30px;
+    height: 30px;
+}
+
 /* medium */
 .medium{
     grid-template-rows: repeat(15, 22.5px);
@@ -27,19 +32,29 @@ i{
     width: 22.5px;
     height: 22.5px;
 }
+.medium > div > img{
+    width: 22.5px;
+    height: 22.5px;
+}
+
 /* large */
 .large{
     grid-template-rows: repeat(20, 18px);
     grid-template-columns: repeat(20,18px);
 }
-
 .large > div{
+    width:18px;
+    height:18px;
+}
+.large > div > img{
     width:18px;
     height:18px;
 }
 
 /* small size in tailwind */
-@media (width >= 40rem) {
+@media (width >= 40rem) 
+{
+
     /* medium */
     .medium{
         grid-template-rows: repeat(15, 20px);
@@ -49,13 +64,21 @@ i{
         width: 20px;
         height: 20px;
     }
+    .medium > div >  img{
+        width: 20px;
+        height: 20px;
+    }
+
     /* large */
     .large{
         grid-template-rows: repeat(20, 15px);
         grid-template-columns: repeat(20,15px);
     }
-    
     .large > div{
+        width:15px;
+        height:15px;
+    }
+    .large > div >  img{
         width:15px;
         height:15px;
     }
@@ -63,7 +86,9 @@ i{
 }
 
 /* medium size in tailwind */
-@media (width >= 48rem) {
+@media (width >= 48rem) 
+{
+
     .small{
         grid-template-rows: repeat(10, 60px);
         grid-template-columns: repeat(10,60px);
@@ -72,6 +97,11 @@ i{
         width: 60px;
         height: 60px;
     }
+    .small > div >  img{
+        width: 60px;
+        height: 60px;
+    }
+
     /* medium */
     .medium{
         grid-template-rows: repeat(15, 40px);
@@ -81,14 +111,24 @@ i{
         width: 40px;
         height: 40px;
     }
+    .medium > div >  img{
+        width: 40px;
+        height: 40px;
+    }
+
     /* large */
     .large{
         grid-template-rows: repeat(20, 30px);
         grid-template-columns: repeat(20,30px);
     }
-    
     .large > div{
         width:30px;
         height:30px;
     }
+    .large > div >  img{
+        width:30px;
+        height:30px;
+    }
+
 }
+
