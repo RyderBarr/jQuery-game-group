@@ -46,7 +46,7 @@ flex flex-col justify-evenly items-center
             snake
         </div>
         
-        <div class="
+        <div id="info" class="
         flex flex-row justify-between
         w-8/10
         items-center
@@ -80,7 +80,7 @@ flex flex-col justify-evenly items-center
             <div id="links" class="
             " >
 
-                <a href="" id="settings">
+                <a href="./settings.html" id="settings">
                     <i class="fa-solid fa-gear 
                     text-[30px] md:text-[45px]
                     mx-[20px]" id="settingIcon"></i>
@@ -116,7 +116,7 @@ flex flex-col justify-evenly items-center
         text-green-800
         ">start</span>
     </a>
-
+    <audio src="./audio/music.mp3" preload="auto" id="music"></audio>
 
     <script>
         $(document).ready(function(){
@@ -127,5 +127,6 @@ flex flex-col justify-evenly items-center
 
         })
     </script>
+    <script src="settings.js"></script>
 </body>
 </html>

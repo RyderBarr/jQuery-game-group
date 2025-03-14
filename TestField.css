@@ -13,3 +13,6 @@
 img{
     transition: src 2s;
 }
+.body{
+    color: red;
+}

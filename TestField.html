@@ -322,7 +322,7 @@
 
 $(document).ready(function() {  
 
-
+// puts all the svg files into variables for easy use
 
 
 var head_right = "snake assets/head_right.svg";    
@@ -350,15 +350,15 @@ var tail_down = "snake assets/tail_down.svg";
 
 
 
-
 var direction = "right";      
 var lastDirection = "right";      
-var tailDirection = "right";      
+var tailDirection = "left";      
 var moving = false;      
 var snake = [54, 52, 53];      
 
+var size = 10
 
-
+// finds the direction and the way the snake is gonna trn and puts the right turn property based on last direction
 
 function getCurve(past, direction) {    
 
@@ -399,7 +399,7 @@ if (past == "down" && direction == "right"){
 }  
 
 
-
+// function to be continously called on with set interval to move the snake
 
 function moveSnake() {      
 
@@ -416,9 +416,7 @@ function moveSnake() {
   var newHeadLoc = headLoc;    
 
 
-        //   added by ryder
-        let size = 10
-        //  /added by ryder
+// sets boundarys by using math to determine if its gonnna be at the edge or not
 
   if (direction == "right") {      
     newHeadLoc = headLoc + 1;      
@@ -437,8 +435,8 @@ function moveSnake() {
 
 
   if (direction == "up") {      
-    newHeadLoc = headLoc - size;      
-    if (newHeadLoc < 1) {      
+    newHeadLoc = headLoc - 10;      
+    if (newHeadLoc <= 1) {      
       clearInterval(moving);      
     }      
   }    
@@ -466,6 +464,7 @@ function moveSnake() {
   var bodyImg = "";      
 
 
+//   makes it so that when you make a change in direction it gets the right body curve 
   if (lastDirection != direction) {      
     bodyImg = getCurve(lastDirection, direction);      
     if (bodyImg == "") {      
@@ -477,12 +476,12 @@ function moveSnake() {
 
 
 
-
+// keeps updating body if there is no change in button 
   $("." + headLoc).html('<img src="' + bodyImg + '" class="body">');      
 
 
 
-
+// changes head based no direction
   if (direction == "right") {      
     $("." + newHeadLoc).html('<img src="' + head_right + '" class="head">');      
   }    
@@ -519,7 +518,7 @@ function moveSnake() {
 
     if (beforeTail - newTailLoc == size) {      
       newTailImg = tail_up;   
-      clearInterval(moving)   
+        
     }    
 
 
@@ -533,7 +532,7 @@ function moveSnake() {
 
 
 
-
+// sets tail direction and previos direction to determine how the snake moves
   tailDirection = lastDirection;      
   lastDirection = direction;      
 
@@ -552,7 +551,7 @@ $(document).keydown(function(event) {
 
 
 
-
+// makes the changes and changes the direction also makes sure you cant keep pressing the same button to go faster
   if (event.keyCode === 39) {      
     if (direction != "left") {      
       direction = "right";      
