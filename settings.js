@@ -1,20 +1,22 @@
 // Still working on audio and making it work for other web pages
 
 $(document).ready(function(){
-    var chomp = new Audio('food.mp3')
-    var gameOver = new Audio('gameover.mp3')
-    var move = new Audio('move.mp3')
-    var music = new Audio('music.mp3')
 
     // Store settings values    
     if(localStorage.getItem("theme") == "default"){
         $("body").css({'background-color': 'rgb(240, 194, 194)'})
+        $("#section").css({'background-color': 'rgb(255, 234, 234)'})
     }
     if(localStorage.getItem("theme") == "blue"){
-        $("body").css({'background-color': 'rgb(51, 153, 255)'})
+        $("body, #section").css({'background-color': 'rgb(51, 153, 255)'})
+        $("#header, #info").css({'background-color': 'rgb(81, 183, 255)'})
     }
     if(localStorage.getItem("theme") == "orange"){
-        $("body").css({'background-color': 'rgb(255, 153, 51)'})
+        $("body, #section").css({'background-color': 'rgb(255, 153, 51)'})
+        $("#header, #info").css({'background-color': 'rgb(255, 173, 71)'})
+    }
+    if(localStorage.getItem("song") == "on"){
+        $('#music')[0].play();
     }
     
     // Settings
@@ -31,13 +33,16 @@ $(document).ready(function(){
         localStorage.setItem("theme", "orange")
     })
 
-    $("#musicon").on('click', function(){
-        localStorage.setItem('music', 'on')
-    })
-    $("#musicoff").on('click', function(){
-        localStorage.setItem('music', 'off')
-    })
-
+    $('#musicon').on('click', function(){
+        $('#music')[0].play(); // [0] is used to access the wbole DOM element
+        localStorage.setItem("song", "on")
+    });
+    $('#musicoff').on('click', function(){
+        $('#music')[0].pause();
+        $('#music')[0].currentTime = 0;
+        localStorage.setItem("song", "off")
+    });
+});
     
     $("#soundon").on('click', function(){
         localStorage.setItem('music', 'on')
@@ -45,4 +50,3 @@ $(document).ready(function(){
     $("#soundoff").on('click', function(){
         localStorage.setItem('music', 'off')
     })
-})
