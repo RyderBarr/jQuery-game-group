@@ -20,11 +20,7 @@
     <link rel="stylesheet" href="./style/field.css">
     
 </head>
-<body class="
-h-auto
-bg-red-100
-flex flex-col justify-evenly items-center
-">
+<body class="flex flex-col justify-evenly items-center">
     
     <div id="header" class="
     w-10/10
@@ -80,7 +76,6 @@ flex flex-col justify-evenly items-center
                     text-[30px] md:text-[45px]
                     mx-[20px]" id="settingIcon"></i>
                 </a>
-
             </div>
 
         
@@ -142,6 +137,12 @@ flex flex-col justify-evenly items-center
     </div>                 
 
     <script>
+
+        // img varables 
+            let apple = `<img src="./images/apple.svg" alt="" class="apple">`
+            let shield = `<img src="./images/shield.svg" alt="" class="apple">`
+            let sneaker = `<img src="./images/sneaker.svg" alt="" class="apple">`
+
         $(document).ready(function(){
 
             // will display time and size after game starts
@@ -151,6 +152,8 @@ flex flex-col justify-evenly items-center
                 let sizeScore = '0'
                 $('.sizeScore').append(sizeScore)
         
+
+
             function CreateGrid(width){
 
                 // size = the amount of cells used
@@ -163,14 +166,6 @@ flex flex-col justify-evenly items-center
                         let tail = width*Math.floor(width/2)+2
                         let body = width*Math.floor(width/2)+3
                         let head = width*Math.floor(width/2)+4
-
-                // randomly populates food
-                    let food = Math.floor(Math.random() * (size+1))
-                    console.log("food at" + food)
-
-                // var declared early to evod an error on console
-                    let imgsize = `w-[30px] h-[30px]`
-
 
 
                 // creates the space for the grid to go
@@ -204,8 +199,6 @@ flex flex-col justify-evenly items-center
                         // sets the size into the grid frame
                             $('.cont').addClass(`medium`)
 
-                        // tailwind saved as a varible
-                            imgsize = `w-[22.5px] h-[22.5px]`
 
                     }
                     else
@@ -214,8 +207,6 @@ flex flex-col justify-evenly items-center
                         // sets the size into the grid frame
                             $('.cont').addClass(`large`)
 
-                        // tailwind saved as a varible
-                            imgsize = `w-[18px] h-[18px]`
 
                     }
 
@@ -254,30 +245,43 @@ flex flex-col justify-evenly items-center
                         
                     `)
 
-                // check that it isn't placing the food over the bodys
-                    if($('.food').children().length <= 0)
-                    {
-
-                        // adds the apple to the sell with the class of the randomly generated num
-                            $(`.${food}`).html
-                            (`
-                            
-                                <img src="./images/apple.svg" alt="" class="apple">
-                                
-                            `)
-
-                    }
-
-                
-                // sets the size of these with the imgsize var made in the if statments
-                    $(`.apple`).addClass(imgsize)
-                    $('.head').addClass(imgsize)
-                    $('.body').addClass(imgsize)
-                    $('.tail').addClass(imgsize)
+                // spawning the food into the 
+                    spawn(apple)
                 
 
             }
             
+
+
+            // function for spawning things
+                function spawn(img)
+                {
+
+                    let item = (Math.floor(Math.random() * (size*size + 1)))
+                    // check that it isn't placing the item over the snake
+                        if($(`.${item}`).children().length == 0)
+                        {
+
+                            // adds the apple to the sell with the class of the randomly generated num
+                                $(`.${item}`).html
+                                (`
+                            
+                                    ${img}
+                                
+                                `)
+
+                        }
+                        else
+                        {
+
+                            // if origanal spawn location is full this puts it in a new spot
+                            // already tested that it works even when over crowding happens
+                            spawn(img)
+
+                        }
+
+                }
+
             // declaring button varibles
                 let size = 10
 
@@ -319,6 +323,11 @@ flex flex-col justify-evenly items-center
             // game end variable difinded
                 gameEnd = false
                 die = false
+            
+            // if you die the game ends
+                if(die){
+                    gameEnd = true 
+                }
 
             // if the game has ended
                 if(gameEnd)
@@ -339,7 +348,7 @@ flex flex-col justify-evenly items-center
 
                             // end screen
                             // not going to format because to big
-                                $('#section').html('')
+                                $('#section').html(`<div class=" flex flex-col justify-evenly items-center h-[85vh] bg-red-300 w-[100vw]"><p class=" bg-green-300 text-red-500 text-5xl p-10 px-50">you win</p><p class="timeScore bg-green-300 text-red-500 text-3xl p-5">time:</p></div>`)
 
                         }
 
