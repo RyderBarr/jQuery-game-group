@@ -140,10 +140,17 @@
 
         // img varables 
             let apple = `<img src="./images/apple.svg" alt="" class="apple">`
-            let shield = `<img src="./images/shield.svg" alt="" class="apple">`
-            let sneaker = `<img src="./images/sneaker.svg" alt="" class="apple">`
-
+            let shield = `<img src="./images/shield.svg" alt="" class="">`
+            let sneaker = `<img src="./images/sneaker.svg" alt="" class="">`
+            let obsticle = `<img src="./images/grey.png" alt="" class="block">`
         $(document).ready(function(){
+
+            $('button').on('mouseenter',function(event){
+                $(this).addClass('animate-pulse')
+            })
+            $('button').on('mouseleave',function(event){
+                $(this).removeClass('animate-pulse')
+            })
 
             // will display time and size after game starts
                 let timeScore = '0:00'
@@ -247,6 +254,7 @@
 
                 // spawning the food into the 
                     spawn(apple)
+                    spawn(obsticle, 5)
                 
 
             }
@@ -276,9 +284,39 @@
 
                             // if origanal spawn location is full this puts it in a new spot
                             // already tested that it works even when over crowding happens
-                            spawn(img)
+                                spawn(img)
 
                         }
+
+                }
+                function spawn(img,num)
+                {
+                    for (i = 0; i < num; i++){
+                        let item = (Math.floor(Math.random() * (size*size + 1)))
+                        
+                        // check that it isn't placing the item over the snake
+                            if($(`.${item}`).children().length == 0)
+                            {
+
+                                // adds the apple to the sell with the class of the randomly generated num
+                                    $(`.${item}`).html
+                                    (`
+                            
+                                        ${img}
+                                
+                                    `)
+
+                            }
+                            else
+                            {
+
+                                // if origanal spawn location is full this puts it in a new spot
+                                // already tested that it works even when over crowding happens
+                                    spawn(img)
+
+                            }
+
+                    }
 
                 }
 
@@ -292,6 +330,8 @@
  
                         // set size to small
                             size = 10
+
+
 
                         // calls creategrid to replace the html
                             $('#section').html(CreateGrid(size))

@@ -416,11 +416,13 @@ function moveSnake() {
   var newHeadLoc = headLoc;    
 
 
-
+        //   added by ryder
+        let size = 10
+        //  /added by ryder
 
   if (direction == "right") {      
     newHeadLoc = headLoc + 1;      
-    if (newHeadLoc % 10 == 0) {      
+    if (newHeadLoc % size == 0) {      
       clearInterval(moving);      
     }      
   }    
@@ -428,14 +430,14 @@ function moveSnake() {
 
   if (direction == "left") {      
     newHeadLoc = headLoc - 1;      
-    if ((headLoc % 10) - 1 == 0) {      
+    if ((headLoc % size) - 1 == 0) {      
       clearInterval(moving);      
     }      
   }    
 
 
   if (direction == "up") {      
-    newHeadLoc = headLoc - 10;      
+    newHeadLoc = headLoc - size;      
     if (newHeadLoc < 1) {      
       clearInterval(moving);      
     }      
@@ -443,7 +445,7 @@ function moveSnake() {
 
 
   if (direction == "down") {      
-    newHeadLoc = headLoc + 10;      
+    newHeadLoc = headLoc + size;      
     if (newHeadLoc > 100) {      
       clearInterval(moving);      
     }      
@@ -515,13 +517,13 @@ function moveSnake() {
     }    
 
 
-    if (beforeTail - newTailLoc == 10) {      
+    if (beforeTail - newTailLoc == size) {      
       newTailImg = tail_up;   
       clearInterval(moving)   
     }    
 
 
-    if (beforeTail - newTailLoc == -10) {      
+    if (beforeTail - newTailLoc == -size) {      
       newTailImg = tail_down;      
     }    
   }    
