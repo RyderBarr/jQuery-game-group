@@ -93,7 +93,7 @@
     ">
     
         <p>
-            select a feild size
+            select a field size
         </p>
 
         <button id="button1"
@@ -227,21 +227,21 @@
                     $(`.${tail}`).html
                     (`
 
-                        <img src="snake assets/tail_left.svg" class="tail">
+                        <img src="snake assets/tail_left.svg" >
 
                     `)
 
                     $(`.${body}`).html
                     (`
 
-                        <img src="snake assets/body_horizontal.svg" class="body">
+                        <img src="snake assets/body_horizontal.svg" >
                     
                     `)
 
                     $(`.${head}`).html
                     (`
                     
-                        <img src="snake assets/head_right.svg" class="head">
+                        <img src="snake assets/head_right.svg" >
                         
                     `)
 
@@ -390,14 +390,15 @@ var tail_right = "snake assets/tail_right.svg";
 var tail_left = "snake assets/tail_left.svg";    
 var tail_up = "snake assets/tail_up.svg";    
 var tail_down = "snake assets/tail_down.svg";  
-
+var eat = new Audio("./audio/food.mp3")
 
 
 var direction = "right";      
 var lastDirection = "right";      
 var tailDirection = "left";      
 var moving = false;      
-var snake = [54, 53, 52];      
+
+  var snake = [54, 53, 52];      
 
 
 // finds the direction and the way the snake is gonna trn and puts the right turn property based on last direction
@@ -445,9 +446,16 @@ if (past == "down" && direction == "right"){
 
 function moveSnake() {      
 
-setTimeout(function(){
-    
-})
+  
+
+  if($(".apple").parent().attr("class") == headLoc){
+    snake.splice(1, 0, (headLoc+1))
+    eat.play()
+    spawn(apple)
+
+
+  }
+
   if (!moving) {      
     return;      
   }    
@@ -688,6 +696,13 @@ if(gameEnd == "yes")
 
 function gameOver(head, nexthead){
     console.log("yes")
+
+    if (head == $(".body").parent().attr("class")){
+      console.log("idek")
+      return true
+      clearInterval(moving)
+    }
+
     if (snize == "small"){
       if (head % 10  == 1 && direction == "right") {      
       clearInterval(moving);  
