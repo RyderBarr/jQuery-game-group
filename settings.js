@@ -1,5 +1,4 @@
-// Still working on audio and making it work for other web pages
-
+// Robert helped with local storage function
 $(document).ready(function(){
 
     // Store settings values    
