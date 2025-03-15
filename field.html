@@ -68,21 +68,7 @@
     w-10/10
     h-[85vh]
     flex flex-col justify-evenly items-center
-    ">
-
-
-        <button id="button1"
-        class="outline-2
-        bg-blue-100
-        w-8/10
-        h-[20vh]
-        rounded-3xl
-        flex justify-evenly items-center"
-        >
-            <p>
-                Small
-            </p>
-        </button>          
+    ">      
 
     <script>
 
@@ -91,8 +77,10 @@
             let shield = `<img src="./images/shield.svg" alt="" class="apple">`
             let sneaker = `<img src="./images/sneaker.svg" alt="" class="apple">`
 
-        $(document).ready(function(){        
-
+        $(document).ready(function(){  
+                
+          size = 10
+          $('#section').html(CreateGrid(size))
 
             function CreateGrid(width){
 
@@ -206,27 +194,9 @@
 
                 }
 
-            // declaring button varibles
-                let size = 15
-                let snize = null
+                      // Size of grid
 
-            // first set of options
 
-                //first button
-                    $('#button1').on('click', function(){
- 
-                    // set size to small
-                    size = 10
-                    snize = "small"
-                    $('#section').html()
-                    $('#section').html(CreateGrid(size))
-                        // set size to small
-                            size = 10
-
-                        // calls creategrid to replace the html
-                            $('#section').html(CreateGrid(size))
-
-                    })
                 console.log(size)
 
             // game end variable difinded
@@ -368,7 +338,6 @@ function moveSnake() {
 
 
 // sets boundarys by using math to determine if its gonnna be at the edge or not
-if (snize == "small"){
   if (direction == "right") {      
     newHeadLoc = headLoc + 1;    
          
@@ -391,7 +360,7 @@ if (snize == "small"){
     newHeadLoc = headLoc + 10;      
         
   }    
-}
+
 console.log(size)
   
 if(gameEnd == "yes")
@@ -462,7 +431,6 @@ if(gameEnd == "yes")
   if (snake.length > 1) {      
     var beforeTail = snake[snake.length - 2];     
     
-    if (snize == "small"){
       if (beforeTail - newTailLoc == 1) {      
       newTailImg = tail_left;      
     }    
@@ -482,8 +450,7 @@ if(gameEnd == "yes")
     if (beforeTail - newTailLoc == -10) {      
       newTailImg = tail_down;      
     }    
-    }
-}    
+}
 
 
   $("." + newTailLoc).html('<img src="' + newTailImg + '" class="tail">');      
@@ -503,8 +470,6 @@ function gameOver(head, nexthead){
       clearInterval(moving)
     }
 
-    if (snize == "small") {
-      // If grid size is small
       // (head % 10 == 0 represents the first column of the grid)
       if (head % 10 == 0 && direction == "left"){ // If the snake meets the left border   
         clearInterval(moving); // Stop snake
@@ -523,7 +488,6 @@ function gameOver(head, nexthead){
         clearInterval(moving);      
         return true;
       }  
-    }
 }
 
 if(gameOver(newHeadLoc, headLoc))
