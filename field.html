@@ -40,29 +40,6 @@
         bg-red-200
         ">
 
-            <div id="score" class="
-            text-l md:text-xl
-            ">
-                <h2 class="
-                text-lg md:text-2xl
-                ">high score</h2>
-                <p>
-                    <!-- use jQuery to write out the information saved by Robert -->
-                    Time: 
-                    <span class="timeScore">
-
-                    </span>
-
-                    <br>
-
-                    Size:
-                    <span class="sizeScore">
-
-                    </span>
-
-                </p>
-            </div>
-
             <div id="links" class="
             " >
 
@@ -92,10 +69,7 @@
     h-[85vh]
     flex flex-col justify-evenly items-center
     ">
-    
-        <p>
-            Select a field size:
-        </p>
+
 
         <button id="button1"
         class="outline-2
@@ -108,34 +82,7 @@
             <p>
                 Small
             </p>
-        </button>
-
-        <button id="button2"
-        class="outline-2
-        bg-green-100
-        w-8/10
-        h-[20vh]
-        rounded-3xl
-        flex justify-evenly items-center"
-        >
-            <p>
-                Medium
-            </p>
-        </button>
-
-        <button id="button3"
-        class="outline-2
-        bg-purple-100
-        w-8/10
-        h-[20vh]
-        rounded-3xl
-        flex justify-evenly items-center"
-        >
-            <p>
-                Large
-            </p>
-        </button>
-    </div>                 
+        </button>          
 
     <script>
 
@@ -144,15 +91,7 @@
             let shield = `<img src="./images/shield.svg" alt="" class="apple">`
             let sneaker = `<img src="./images/sneaker.svg" alt="" class="apple">`
 
-        $(document).ready(function(){
-
-            // will display time and size after game starts
-                let timeScore = '0:00'
-                $('.timeScore').append(timeScore)
-
-                let sizeScore = '0'
-                $('.sizeScore').append(sizeScore)
-        
+        $(document).ready(function(){        
 
 
             function CreateGrid(width){
@@ -192,22 +131,6 @@
 
                         // tailwind saved as a varible
                             imgsize = `w-[30px] h-[30px]`
-
-                    }
-                    else if(width == 15)
-                    {
-
-                        // sets the size into the grid frame
-                            $('.cont').addClass(`medium`)
-
-
-                    }
-                    else
-                    {
-
-                        // sets the size into the grid frame
-                            $('.cont').addClass(`large`)
-
 
                     }
 
@@ -304,31 +227,6 @@
                             $('#section').html(CreateGrid(size))
 
                     })
-
-                //second button
-                    $('#button2').on('click', function(){
-
-                    // set size to small
-                    size = 15
-                    snize = "medium"
-                    $('#section').html()
-                    $('#section').html(CreateGrid(size))
-                  console.log(size)
-                })  
-                        
-
-                //third button
-                    $('#button3').on('click', function(){
-                    // set size to small
-                    size = 20
-                    snize = "large"
-                        // set size to small
-
-
-                        // calls creategrid to replace the html
-                            $('#section').html(CreateGrid(size))
-                    
-                }) 
                 console.log(size)
 
             // game end variable difinded
@@ -347,10 +245,11 @@
                     // if end because of dieing
                         if(die)
                         {
-
+                          
                             // end screen
                             // not going to format because to big
                                 $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">You lost.</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+
                         }
 
                     // if end because of winning
@@ -390,7 +289,9 @@ var tail_right = "snake assets/tail_right.svg";
 var tail_left = "snake assets/tail_left.svg";    
 var tail_up = "snake assets/tail_up.svg";    
 var tail_down = "snake assets/tail_down.svg";  
-var eat = new Audio("./audio/food.mp3")
+var eat = new Audio("./audio/food.mp3");
+var endsfx = new Audio('./audio/gameover.mp3');
+var movesfx = new Audio ('./audio/move.mp3');
 
 
 var direction = "right";      
@@ -398,7 +299,8 @@ var lastDirection = "right";
 var tailDirection = "left";      
 var moving = false;      
 
-  var snake = [54, 53, 52];      
+var snake = [54, 53, 52];
+    
 
 
 // finds the direction and the way the snake is gonna trn and puts the right turn property based on last direction
@@ -445,10 +347,7 @@ if (past == "down" && direction == "right"){
 // function to be continously called on with set interval to move the snake
 
 function moveSnake() {      
-
-  
-
-  if($(".apple").parent().attr("class") == headLoc){
+    if($(".apple").parent().attr("class") == headLoc){
     snake.splice(1, 0, (headLoc+1))
     eat.play()
     spawn(apple)
@@ -490,57 +389,6 @@ if (snize == "small"){
 
   if (direction == "down") {      
     newHeadLoc = headLoc + 10;      
-        
-  }    
-}
-
-if (snize == "medium"){
-  if (direction == "right") {      
-    newHeadLoc = headLoc + 1;    
-         
-       
-  }    
-
-  if (direction == "left") {      
-    newHeadLoc = headLoc - 1;      
-      
-  }    
-
-
-  if (direction == "up") {      
-    newHeadLoc = headLoc - 15;      
-        
-  }    
-
-
-  if (direction == "down") {      
-    newHeadLoc = headLoc + 15;      
-        
-  }    
-}
-
-
-if (snize == "large"){
-  if (direction == "right") {      
-    newHeadLoc = headLoc + 1;    
-         
-       
-  }    
-
-  if (direction == "left") {      
-    newHeadLoc = headLoc - 1;      
-      
-  }    
-
-
-  if (direction == "up") {      
-    newHeadLoc = headLoc - 20;      
-        
-  }    
-
-
-  if (direction == "down") {      
-    newHeadLoc = headLoc + 20;      
         
   }    
 }
@@ -635,55 +483,7 @@ if(gameEnd == "yes")
       newTailImg = tail_down;      
     }    
     }
-
-
-
-    if (snize == "medium"){
-      if (beforeTail - newTailLoc == 1) {      
-      newTailImg = tail_left;      
-    }    
-
-
-    if (beforeTail - newTailLoc == -1) {      
-      newTailImg = tail_right;      
-    }    
-
-
-    if (beforeTail - newTailLoc == 15) {      
-      newTailImg = tail_up;   
-        
-    }    
-
-
-    if (beforeTail - newTailLoc == -15) {      
-      newTailImg = tail_down;      
-    }    
-    }
-
-    if (snize == "large"){
-      if (beforeTail - newTailLoc == 1) {      
-      newTailImg = tail_left;      
-    }    
-
-
-    if (beforeTail - newTailLoc == -1) {      
-      newTailImg = tail_right;      
-    }    
-
-
-    if (beforeTail - newTailLoc == 20) {      
-      newTailImg = tail_up;   
-        
-    }    
-
-
-    if (beforeTail - newTailLoc == -20) {      
-      newTailImg = tail_down;      
-    }    
-    }
-
-    
-  }    
+}    
 
 
   $("." + newTailLoc).html('<img src="' + newTailImg + '" class="tail">');      
@@ -703,56 +503,34 @@ function gameOver(head, nexthead){
       clearInterval(moving)
     }
 
-    if (snize == "small"){
-      if (head % 10  == 1 && direction == "right") {      
-      clearInterval(moving);  
-        return true 
-    }  
- if ((nexthead % 10) - 1 == 0) {      
-      clearInterval(moving);      
-      return true
-    }   
-if (head <= 1) {      
-      clearInterval(moving);  
-      return true    
-    }  
-if (head > 100) {      
-      clearInterval(moving);      
-      return true
-    }  
+    if (snize == "small") {
+      // If grid size is small
+      // (head % 10 == 0 represents the first column of the grid)
+      if (head % 10 == 0 && direction == "left"){ // If the snake meets the left border   
+        clearInterval(moving); // Stop snake
+        return true; // Display death
+      }  
+      if ((head - 1) % 10 == 0 && direction == "right"){ // Without the - 1 the snake dies too early in the right
+        clearInterval(moving);  
+        return true; 
+      }
+      // head <= 0 means it's outside the top grid  
+      if (head <= 0) {  
+        clearInterval(moving);  
+        return true;    
+      }  
+      if (head > 100) {      
+        clearInterval(moving);      
+        return true;
+      }  
     }
-    
-    if (snize == "medium"){
-      if (head % 15  == 1 && direction == "right") {      
-      clearInterval(moving);  
-        return true
-      
-         if ((nexthead % 15) - 1 == 0) {      
-      clearInterval(moving);      
-      return true
-    }   
-// if (head % 16 == 0 && direction == "left"  ) {      
-//       clearInterval(moving);  
-//       return true    
-//     }  
-if (head <= 0 && direction == "up") {      
-      clearInterval(moving);      
-      return true
-    }  
-    }
-        
-    }  
-
-    
 }
 
 if(gameOver(newHeadLoc, headLoc))
             {
                 console.log("working")
-               
-                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">Size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">You lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
-
-                    
+                    endsfx.play()
+                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p class="bg-green-300 text-red-700 text-3xl p-5">You lose..</p><a href="./field.html"<p class="timeScore bg-green-300 text-red-700 text-3xl p-5">Try Again?</p></a></div>`)
 
                     
             }
@@ -773,31 +551,35 @@ if (!moving) {
 
 
 // makes the changes and changes the direction also makes sure you cant keep pressing the same button to go faster
-  if (event.keyCode === 39) {      
-    if (direction != "left") {      
-      direction = "right";      
-    }      
+  if (event.keyCode === 39) {
+    if (direction != "left") {    
+      direction = "right";
+      movesfx.play();      
+    }             
   }    
 
 
-  if (event.keyCode === 37) {      
+  if (event.keyCode === 37) {
     if (direction != "right") {      
-      direction = "left";      
-    }      
+      direction = "left";
+      movesfx.play();      
+    }    
   }    
 
 
-  if (event.keyCode === 38) {      
+  if (event.keyCode === 38) {
     if (direction != "down") {      
-      direction = "up";      
-    }      
+      direction = "up";
+      movesfx.play();      
+    }    
   }    
 
 
-  if (event.keyCode === 40) {      
+  if (event.keyCode === 40) {
     if (direction != "up") {      
-      direction = "down";      
-    }      
+      direction = "down";
+      movesfx.play();      
+    }    
   }    
 
      $(".body").animate({transform: 'scale:(1.1)'})
