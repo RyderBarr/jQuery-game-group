@@ -329,7 +329,6 @@
                     
                 }) 
                 console.log(size)
-                    }) 
 
             // game end variable difinded
                 gameEnd = false
@@ -510,6 +509,32 @@ if (snize == "medium"){
         
   }    
 }
+
+
+if (snize == "large"){
+  if (direction == "right") {      
+    newHeadLoc = headLoc + 1;    
+         
+       
+  }    
+
+  if (direction == "left") {      
+    newHeadLoc = headLoc - 1;      
+      
+  }    
+
+
+  if (direction == "up") {      
+    newHeadLoc = headLoc - 20;      
+        
+  }    
+
+
+  if (direction == "down") {      
+    newHeadLoc = headLoc + 20;      
+        
+  }    
+}
 console.log(size)
   
 if(gameEnd == "yes")
@@ -578,10 +603,34 @@ if(gameEnd == "yes")
 
 
   if (snake.length > 1) {      
-    var beforeTail = snake[snake.length - 2];      
+    var beforeTail = snake[snake.length - 2];     
+    
+    if (snize == "small"){
+      if (beforeTail - newTailLoc == 1) {      
+      newTailImg = tail_left;      
+    }    
 
 
-    if (beforeTail - newTailLoc == 1) {      
+    if (beforeTail - newTailLoc == -1) {      
+      newTailImg = tail_right;      
+    }    
+
+
+    if (beforeTail - newTailLoc == 10) {      
+      newTailImg = tail_up;   
+        
+    }    
+
+
+    if (beforeTail - newTailLoc == -10) {      
+      newTailImg = tail_down;      
+    }    
+    }
+
+
+
+    if (snize == "medium"){
+      if (beforeTail - newTailLoc == 1) {      
       newTailImg = tail_left;      
     }    
 
@@ -600,6 +649,31 @@ if(gameEnd == "yes")
     if (beforeTail - newTailLoc == -15) {      
       newTailImg = tail_down;      
     }    
+    }
+
+    if (snize == "large"){
+      if (beforeTail - newTailLoc == 1) {      
+      newTailImg = tail_left;      
+    }    
+
+
+    if (beforeTail - newTailLoc == -1) {      
+      newTailImg = tail_right;      
+    }    
+
+
+    if (beforeTail - newTailLoc == 20) {      
+      newTailImg = tail_up;   
+        
+    }    
+
+
+    if (beforeTail - newTailLoc == -20) {      
+      newTailImg = tail_down;      
+    }    
+    }
+
+    
   }    
 
 
@@ -617,11 +691,7 @@ function gameOver(head, nexthead){
       if (head % 10  == 1 && direction == "right") {      
       clearInterval(moving);  
         return true
-      
-        
-        
-    }  
- if ((nexthead % 10) - 1 == 0) {      
+       if ((nexthead % 10) - 1 == 0) {      
       clearInterval(moving);      
       return true
     }   
@@ -633,6 +703,10 @@ if (head > 100) {
       clearInterval(moving);      
       return true
     }  
+        
+        
+    }  
+
     }
     
     if (snize == "medium"){
@@ -717,7 +791,7 @@ $(document).keydown(function(event) {
             $(".tail").animate({transform: 'scale:(1.1)'})
             $(".head").animate({transform: 'scale:(1.1)'})
  
-});  
+});  })
 console.log(size)
 
             
