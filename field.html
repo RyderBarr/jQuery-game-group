@@ -16,7 +16,7 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="/style/output.css">
     <link rel="stylesheet" href="./style/field.css">
     
 </head>
@@ -690,8 +690,9 @@ function gameOver(head, nexthead){
     if (snize == "small"){
       if (head % 10  == 1 && direction == "right") {      
       clearInterval(moving);  
-        return true
-       if ((nexthead % 10) - 1 == 0) {      
+        return true 
+    }  
+ if ((nexthead % 10) - 1 == 0) {      
       clearInterval(moving);      
       return true
     }   
@@ -703,10 +704,6 @@ if (head > 100) {
       clearInterval(moving);      
       return true
     }  
-        
-        
-    }  
-
     }
     
     if (snize == "medium"){
@@ -714,22 +711,22 @@ if (head > 100) {
       clearInterval(moving);  
         return true
       
-        
-        
-    }  
- if ((nexthead % 15) - 1 == 0) {      
+         if ((nexthead % 15) - 1 == 0) {      
       clearInterval(moving);      
       return true
     }   
-if (head % 16 == 0 && direction == "left"  ) {      
-      clearInterval(moving);  
-      return true    
-    }  
+// if (head % 16 == 0 && direction == "left"  ) {      
+//       clearInterval(moving);  
+//       return true    
+//     }  
 if (head <= 0 && direction == "up") {      
       clearInterval(moving);      
       return true
     }  
     }
+        
+    }  
+
     
 }
 
