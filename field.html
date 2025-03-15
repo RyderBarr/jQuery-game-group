@@ -47,14 +47,14 @@
                 ">high score</h2>
                 <p>
                     <!-- use jQuery to write out the information saved by Robert -->
-                    time: 
+                    Time: 
                     <span class="timeScore">
 
                     </span>
 
                     <br>
 
-                    size:
+                    Size:
                     <span class="sizeScore">
 
                     </span>
@@ -71,7 +71,7 @@
                     mx-[20px]" id="settingIcon"></i>
                 </a>
 
-                <a href="" id="stats">
+                <a href="./index.html" id="home">
                     <i class="fa-solid fa-chart-simple 
                     text-[30px] md:text-[45px]
                     mx-[20px]" id="settingIcon"></i>
@@ -93,7 +93,7 @@
     ">
     
         <p>
-            select a feild size
+            Select a field size:
         </p>
 
         <button id="button1"
@@ -105,7 +105,7 @@
         flex justify-evenly items-center"
         >
             <p>
-                small
+                Small
             </p>
         </button>
 
@@ -118,7 +118,7 @@
         flex justify-evenly items-center"
         >
             <p>
-                medium
+                Medium
             </p>
         </button>
 
@@ -131,7 +131,7 @@
         flex justify-evenly items-center"
         >
             <p>
-                large
+                Large
             </p>
         </button>
     </div>                 
@@ -283,7 +283,7 @@
                 }
                 
                 if($(".apple").parent().attr("class") == headLoc){
-                  console.log("Apple")
+                
                 } 
 
             // declaring button varibles
@@ -353,7 +353,7 @@
 
                             // end screen
                             // not going to format because to big
-                                $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">you lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+                                $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">You lost.</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
                         }
 
                     // if end because of winning
@@ -362,7 +362,7 @@
 
                             // end screen
                             // not going to format because to big
-                                $('#section').html(`<div class=" flex flex-col justify-evenly items-center h-[85vh] bg-red-300 w-[100vw]"><p class=" bg-green-300 text-red-500 text-5xl p-10 px-50">you win</p><p class="timeScore bg-green-300 text-red-500 text-3xl p-5">time:</p></div>`)
+                                $('#section').html(`<div class=" flex flex-col justify-evenly items-center h-[85vh] bg-red-300 w-[100vw]"><p class=" bg-green-300 text-red-500 text-5xl p-10 px-50">You win!</p><p class="timeScore bg-green-300 text-red-500 text-3xl p-5">Time:</p></div>`)
 
                         }
 
