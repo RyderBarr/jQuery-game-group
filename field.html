@@ -753,10 +753,10 @@ if(gameOver(newHeadLoc, headLoc))
 
 $(document).keydown(function(event) {    
 
-
-  if (!moving) {      
-    moving = setInterval(moveSnake, 200);      
-  }    
+// Moving snake
+if (!moving) {      
+  moving = setInterval(moveSnake, 200);      
+}    
 
 
 
