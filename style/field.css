@@ -133,3 +133,10 @@ i{
 
 }
 
+.body{
+    color: red;
+    transition: opacity 0.2s ease-in-out;
+}
+div{
+    transition: all .3s;
+}

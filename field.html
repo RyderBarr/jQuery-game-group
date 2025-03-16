@@ -1,4 +1,4 @@
-<!-- Ryder did the field and the size selection, Robert did everything for the snake, Karam did the apple and power-ups -->
+<!-- Ryder did the field and the size selection, Robert did everything for the snake and score, Karam did the apple and power-ups -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -45,13 +45,10 @@
             ">
                 <h2 class="
                 text-lg md:text-2xl
-                ">high score</h2>
+                ">high score: <p class="relative left-[125px] bottom-[30px] highScore"></p></h2>
                 <p>
                     <!-- use jQuery to write out the information saved by Robert -->
-                    Time: 
-                    <span class="timeScore">
-
-                    </span>
+                    
 
                     <br>
 
@@ -138,18 +135,21 @@
     </div>                 
 
     <script>
+      localStorage.setItem("seconds", 0)
+      localStorage.setItem("minutes", 0)
 
         // img varables 
             let apple = `<img src="./images/apple.svg" alt="" class="apple">`
             let shield = `<img src="./images/shield.svg" alt="" class="apple">`
             let sneaker = `<img src="./images/sneaker.svg" alt="" class="apple">`
-
         $(document).ready(function(){
-
+        
             // will display time and size after game starts
                 let timeScore = '0:00'
                 $('.timeScore').append(timeScore)
 
+                let highScore = localStorage.getItem("highScore")
+                $('.highScore').append(localStorage.getItem("highScore"))
                 let sizeScore = '0'
                 $('.sizeScore').append(sizeScore)
         
@@ -225,26 +225,7 @@
 
                 // sets the sell found in the spot of the snake location formula
                 // into the part of the snake they are
-                    $(`.${tail}`).html
-                    (`
-
-                        <img src="snake assets/tail_left.svg" >
-
-                    `)
-
-                    $(`.${body}`).html
-                    (`
-
-                        <img src="snake assets/body_horizontal.svg" >
                     
-                    `)
-
-                    $(`.${head}`).html
-                    (`
-                    
-                        <img src="snake assets/head_right.svg" >
-                        
-                    `)
 
                 // spawning the food into the 
                     spawn(apple)
@@ -293,6 +274,7 @@
                     $('#button1').on('click', function(){
  
                     // set size to small
+                    var snake = [54, 53, 52];      
                     size = 10
                     snize = "small"
                     $('#section').html()
@@ -307,7 +289,7 @@
 
                 //second button
                     $('#button2').on('click', function(){
-
+                           
                     // set size to small
                     size = 15
                     snize = "medium"
@@ -319,6 +301,7 @@
 
                 //third button
                     $('#button3').on('click', function(){
+                      var snake = [205, 204, 203]; 
                     // set size to small
                     size = 20
                     snize = "large"
@@ -392,14 +375,13 @@ var tail_up = "snake assets/tail_up.svg";
 var tail_down = "snake assets/tail_down.svg";  
 var eat = new Audio("./audio/food.mp3")
 
-
+var snake = [54, 53, 52];      
 var direction = "right";      
 var lastDirection = "right";      
 var tailDirection = "left";      
 var moving = false;      
 
-  var snake = [54, 53, 52];      
-
+  
 
 // finds the direction and the way the snake is gonna trn and puts the right turn property based on last direction
 
@@ -446,14 +428,24 @@ if (past == "down" && direction == "right"){
 
 function moveSnake() {      
 
-  
+
+
+ 
 
   if($(".apple").parent().attr("class") == headLoc){
     snake.splice(1, 0, (headLoc+1))
-    eat.play()
+    eat.play()    
+    sizeScore ++
+
+    if(localStorage.getItem("highScore")  < sizeScore){
+      localStorage.setItem("highScore", sizeScore)
+      
+    }
+    console.log(localStorage.getItem("highScore"))
     spawn(apple)
-
-
+    $(".sizeScore").html(sizeScore)
+    $(".highScore").html(localStorage.getItem('highScore'))
+    
   }
 
   if (!moving) {      
@@ -466,31 +458,41 @@ function moveSnake() {
 
 
   var newHeadLoc = headLoc;    
+  if(gameOver(newHeadLoc, headLoc))
+            {
+                console.log("working")
+               
+                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">Size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">You lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
 
+                    
+
+                    
+            }
+  
 
 // sets boundarys by using math to determine if its gonnna be at the edge or not
 if (snize == "small"){
   if (direction == "right") {      
     newHeadLoc = headLoc + 1;    
          
-       
+     
   }    
 
   if (direction == "left") {      
     newHeadLoc = headLoc - 1;      
-      
+  
   }    
 
 
   if (direction == "up") {      
     newHeadLoc = headLoc - 10;      
-        
+   
   }    
 
 
   if (direction == "down") {      
     newHeadLoc = headLoc + 10;      
-        
+    
   }    
 }
 
@@ -544,6 +546,19 @@ if (snize == "large"){
         
   }    
 }
+if(gameOver(newHeadLoc, headLoc))
+            {
+                console.log("working")
+               
+                    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p id=".sizeScore" class="bg-green-300 text-red-700 text-3xl p-5">Size at death:<br></p><p class="bg-green-300 text-red-700 text-3xl p-5">You lose</p><p class="timeScore bg-green-300 text-red-700 text-3xl p-5">time</p></div>`)
+
+                    
+
+                    
+            }
+
+       
+
 console.log(size)
   
 if(gameEnd == "yes")
@@ -697,18 +712,25 @@ if(gameEnd == "yes")
 function gameOver(head, nexthead){
     console.log("yes")
 
-    if (head == $(".body").parent().attr("class")){
-      console.log("idek")
-      return true
-      clearInterval(moving)
-    }
+
+
+if (head == $(".body").parent().attr("class")){
+  clearInterval(moving)
+  return true
+}
+
+
+
+
+
+
 
     if (snize == "small"){
       if (head % 10  == 1 && direction == "right") {      
       clearInterval(moving);  
         return true 
     }  
- if ((nexthead % 10) - 1 == 0) {      
+ if ((nexthead % 10) - 1 == -1 && nexthead != 1) {      
       clearInterval(moving);      
       return true
     }   
@@ -726,23 +748,43 @@ if (head > 100) {
       if (head % 15  == 1 && direction == "right") {      
       clearInterval(moving);  
         return true
-      
+      }
          if ((nexthead % 15) - 1 == 0) {      
       clearInterval(moving);      
       return true
     }   
-// if (head % 16 == 0 && direction == "left"  ) {      
-//       clearInterval(moving);  
-//       return true    
-//     }  
+if ((head - 1) % 15 == -1 && direction == "left"  ) {      
+      clearInterval(moving);  
+      return true    
+    }  
 if (head <= 0 && direction == "up") {      
       clearInterval(moving);      
       return true
     }  
-    }
+    
         
     }  
 
+
+
+    if (snize == "large"){
+      if (nexthead > 400 ){
+        clearInterval(moving)
+        return true
+      }
+      if (nexthead % 20 == 0 && direction == "left"){
+        clearInterval(moving)
+        return true
+      }
+      if (nexthead % 20 == 0 && direction == "right" && nexthead > 20){
+        clearInterval(moving)
+        return true
+      }
+      if (nexthead <= 0 ){
+        clearInterval(moving)
+        return true
+      }
+    }
     
 }
 
@@ -769,6 +811,7 @@ $(document).keydown(function(event) {
 if (!moving) {      
   moving = setInterval(moveSnake, 200);      
 }    
+
 
 
 
