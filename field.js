@@ -397,7 +397,7 @@ function gameOver(head){
 
 if(gameOver(newHeadLoc, headLoc)){
     endsfx.play()
-    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p class="bg-green-300 text-red-700 text-3xl p-5">You lose!</p><a href="./field.html"<p class="timeScore bg-green-300 text-red-700 text-3xl p-5">Try Again?</p></a></div>`)
+    $('#section').html(`<div class="flex flex-col justify-evenly items-center h-[85vh] bg-zinc-800 w-[100vw]"><p class="bg-green-300 text-red-700 text-3xl p-5">You lose!</p><a href="./field.html"<p class="timeScore bg-green-300 text-red-700 text-3xl p-5">Try Again</p></a></div>`)
     }
 }  
 
