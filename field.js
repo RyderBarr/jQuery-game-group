@@ -1,7 +1,6 @@
 
         // img varables 
             let apple = `<img src="./images/apple.svg" alt="" class="apple">`
-            let sneaker = `<img src="./images/sneaker.svg" alt="" class="speed">`
 
         $(document).ready(function(){  
 
@@ -191,8 +190,6 @@ var direction = "right";
 var lastDirection = "right";      
 var tailDirection = "left";      
 var moving = false;
-var speed = false;
-var boost = false;      
 
 var snake = [54, 53, 52];
     
