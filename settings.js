@@ -49,3 +49,15 @@ $(document).ready(function(){
     $("#soundoff").on('click', function(){
         localStorage.setItem('music', 'off')
     })
+
+    var soundEnabled = localStorage.getItem('music') === 'on';
+
+    if (soundEnabled) {
+        var eat = new Audio("./audio/food.mp3");
+        var endsfx = new Audio('./audio/gameover.mp3');
+        var movesfx = new Audio('./audio/move.mp3');
+    } else {
+        var eat = { play: function() {} };
+        var endsfx = { play: function() {} };
+        var movesfx = { play: function() {} };
+    }
